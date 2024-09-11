@@ -1,0 +1,29 @@
+%==========================================================================
+clear, clf, clc
+
+
+% Simulation options
+Opt.Verbosity = 1;
+
+% Experimental parameters
+Exp.mwFreq = 9.659833;
+Exp.Range = [0 1180];
+Exp.nPoints = 4096;
+
+Sys.S = 1/2;
+Sys.g = 1.1429;
+Sys.L = 3;
+Sys.soc = -2900*clight*1e-4;
+Exp.Temperature = 10;
+Sys.CF2 = [0 0 2.0423e+06 0 0];
+Sys.CF4 = [12425 0 0 0 57819 0 0 0 0];
+Sys.CF6 = [0 0 4200.06 0 0 0 513 0 0 0 0 0 0];
+Sys.HStrain = [2000 2000 8980.81];
+
+
+[B,spec0] = pepper(Sys,Exp,Opt);
+
+
+plot(B,spec0);
+axis tight;
+title('1');

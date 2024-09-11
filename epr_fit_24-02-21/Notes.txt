@@ -1,0 +1,30 @@
+
+
+12.07.2012 eprFit 4.1
+	- now calibration edit boxes are saved and reloaded on open
+
+13.07.2013 eprFit 4.2
+	- dGauss function in simulation tab is now corrected.
+	- dGaussDisp and GaussDisp are added. These two function include calculation of Gaussian dispersion set by phase parameter which mixes absorption and dispersion. These two functions do not work close to H = 0G, sice the other component (x+xc) would give NaN for narrow spectra. This will be corrected in future.
+	- When creating new experiment, data is automatically set to now.
+
+18.7.2013 eprFit4.3
+        - Added the whole new panel for EasySpin and improved compatibility
+        - Sim panel now has Undo and ReUndo buttons to restore old simulation parameters.
+
+31.8.2013 eprFit4.4
+	- added pseudo Voigt fitting function from Origin library http://www.originlab.com/www/helponline/origin/en/UserGuide/PsdVoigt1.html
+	- added show components after Plot button is pressed in Fitting panel
+	- added undo and reundo for Fitting.
+	- improved undo and reundo for fitting and simulations: if parameters dont change uicoefs is not saved one more time.
+	- after fitting is finnished the whole uicoefs is saved under epr.fit.fits{idx}.uiconf, not only parameters. And when update function is called the whole uicoefs is restored. Works only if fitting one spectrum at a time.
+	- number of fitting functions can now be up to 50, instead of 5.
+	- when normal functions are added min values are now set to 0 instead to -inf.
+	- improved remove function: if the function is removed, ones with higher numbers get one number less. So there is no number jump in functions and coefficients.
+	- when loadign ASCII files frequency is set to 0 (instead to 1). When converting xc to g-factor, in case of freq=0, resulting g-factor in results equals to xc (g=xc). This is necassary for non-EPR spectra.
+	- removed bug: edit when right-clicking on the filename did not work when only one element was present. 
+ 
+
+25.3.2014 eprFit4.6
+	- improved ascii file reading with colume choosinig
+	- added Gaussian and Lorentzian powder functions

@@ -1,0 +1,11 @@
+Brukerjev spektrometer E500, ki smo ga dobili od biofizikov, meritev ne skalira glede na Gain, tako kot jih
+pulzni Bruker E580 (in EMXnano na ZVKDS). V kodi tako pri nalaganju podatkov v eprFit ni bilo ustreznega skaliranja.
+Tako je v kodi (bolj natanèno v fajlu EPR_load.m, vrstica 101) dodano ustrezno skaliranje, ki vse spektre skalira
+na Gain = 60 dB.
+
+Dodatno sem dne 19. 7. 2023 v vrstici 101 še delil z 10^7, da niso potem prevelike intenzitete.
+
+dodatno sem v kodi, v fajlu brukerload.m dodal en if stavek v 98 vrstico. Prej je bilo samo Y = Y/nscn. Težava je bila v tem,
+da èe si spekter shranil preden je program uradno zakljuèil sweep (npr, ko delaš širok sweep in ko se vrne na 100 G, nekaj èasa
+rabi, da nastavi polje in šele potem uradno konèa sweep), je bil v DSC fajlu zabeleženo, da si naredil 0 scanov. 
+Ta podatek se v fajlu brukerload.m shrani v nscn. IF stavek samo preveri, èe je nscn = 0 in ga postavi na 1.

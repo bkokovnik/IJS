@@ -1,0 +1,30 @@
+clear
+[B,spc,Params] = eprload('C:\Users\Bor Kokovnik\Documents\IJS\eprPodatki\Yb2Be2GeO7_15K.DTA');
+
+Exp.mwFreq = 9.659833;
+Exp.Range = [0 1180];
+Exp.Temperature = 15;
+
+
+Sys.S = 1/2;
+Sys.g = 1.1429;
+Sys.L = 3;
+Sys.soc = -2900*clight*1e-4;
+Sys.CF2 = [1.48086e+08 0 1.01681e+08 0 0];          % CF(2,q) with q = +2,+1,0,-1,-2
+Sys.CF4 = [0 0 0 0 9.46368e+06 0 0 0 0];
+Sys.HStrain = [9704.18 9416.19 9501.77];
+
+% % Optimalni parametri
+% Sys.g = 1.1429;
+% Sys.CF2 = [1.37811e+08 0 1.51627e+08 0 0];
+% Sys.CF4 = [0 0 0 0 9.60566e+06 0 0 0 0];
+% Sys.HStrain = [9748.41 9800.47 10625];
+
+
+SysVary.g = 0.5;
+SysVary.HStrain = [10000 10000 10000];
+SysVary.CF2 = [0.5e+08 0 0.5e+08 0 0];
+SysVary.CF4 = [0 0 0 0 2e+06 0 0 0 0];
+
+
+esfit(spc,@pepper,{Sys,Exp},{SysVary});

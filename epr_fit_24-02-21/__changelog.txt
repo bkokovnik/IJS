@@ -1,0 +1,176 @@
+eprFit.m: line 3259, 3260 in butSimCopy_Callback: added chi2 copy
+eprFit.m: lines 3430 and 3431 in mnuCpySimRes_Callback: added chi2 copy
+eprFit.fig: added 'Normalize All to Chi2' to menu under Edit tab
+eprFit.m: lines 3309-3364: added mnuNormAllChi2_Callback function which asks for range and desired functions and normalizes 
+	all specters to have the same chi2 as currently selected specter. Uses linear function simfun_str = 'z(1)*x + z(2)' 
+	with default values '0*x + 0'. Fits using fminsearch, just like Sim, to minimize Chi2 first. Then multiplies each 
+	specter (i) by sqrt(chi2(idx)/chi2(i)) where idx is first of currently selected specters.
+
+powdersimu.c: all 4 functions: transforming gx, gy, gz to H and directly computing Hc
+brukerload.m: line 66: added Temperature read, else default 300
+	line 85: uncommented temperature save
+EPR_load.m: line 96: commented temperature overwrite
+eprFit.m: 
+eprFit.fig: added Link_coef column to uitSim
+eprFit.m: line 4157 in butSimAdd_Callback: added another deafult value 1 to end of vrstica
+replaced (eprFit.m: lines 2507, 2513 in butSimulate_Callback: added division of value by Link_coef for base value and
+	multiplication by it for linked values)
+replaced (eprFit.m: lines 2891, 2897 in butFitSim_Callback: added division of value by Link_coef for base value and
+	multiplication by it for linked values)
+eprFit.m: line 2963 in butFitSim_Callback: added division of value by Link_coef
+eprFit.m: line 2964 in butFitSim_Callback: added multiplication by Link_coef
+eprFit.m: line 2993 in butFitSim_Callback: added multiplication by Link_coef
+eprFit.m: line 2984 and 2986 in butFitSim_Callback: added multiplication by Link_coef to fitting function
+eprFit.m: line 3026 and 3028 in butFitSim_Callback: added multiplication of results by Link_coef
+
+eprFit.fig: added Link and Link_coef columns to uitFit
+eprFit.m: lines 236, 245, 261 in butFitAdd_Callback: added default values of '' and 1 to end of vrstica
+eprFit.m: lines 342 and 353 in butFitRem_Callback: added if statements before decreasing number to prevent y0 going negative 
+	and s*x going NaN
+eprFit.m: in butFitRem_Callback: moved removing parameters and functions from line 339 to line 363 so that changing numbers
+	works correctly and removing last function is possible
+
+eprFit.m: lines 404-438 in butPlotFunc_Callback: added copying linked values including ratios from the first occurence. 
+	if at least one is fixed all get fixed
+eprFit.m: lines 559+ in butFitFunc_Callback: removed converting cell uicoefs to struct coef and saving
+	uicoefs to epr.fit.coef instead. using cell data type instead of struct allows use of different data types inside it
+	but requires following changes to other code
+
+EPR_fit.m: lines 41-43: removed previous data reading and changed it to use just cell arrays
+EPR_fit.m: lines 45-47: removed and replaced vary_idx and not_vary_idx finding method, also switched 0 and 1 criteria
+	because it is not negated anymore in eprFit before calling EPR_fit
+EPR_fit.m: line 50: removed num2cell conversion so it doesnt produce nested cells
+EPR_fit.m: lines 84, 86, 87: added cell2mat conversion
+eprFit.m: line 611 in butFitFunc_Callback: changed reading data method to fit the new data type (from fieldnames() to first 
+	collumn)
+eprFit.m: line 1036 in epr_update: changed reading data method to fit the new data type (from fieldnames() to first collumn)
+plot_fit_results.m: line 30: changed reading data method to fit the new data type (from fieldnames() to first collumn)
+
+eprFit.m: lines 560-694 in butFitFunc_Callback: added copying linked values including ratios from the first occurence. 
+	if at least one is fixed all get fixed
+
+EPR_fit.m: line 39: added fitfunstr reading from epr.fit.fitfun so it can be altered before model=fittype...
+EPR_fit.m: line 81: in epr.fit.model = fittype(...): now reading function from fitfunstr instead of epr.fit.fitfun
+EPR_fit.m: lines 57-78: added replacing linked coefficients in equation with scaled normalized values
+EPR_fit.m: line 82: replaced coef_names in fittype with (normalized) coefficient names
+EPR_fit.m: lines 84, 86, 87: replaced Startpoint and limits from coef_values(:,1/2/3) to model_coefs(:2/3/4)
+EPR_fit.m: line 109: changed variable name from coeff to res_coefs
+EPR_fit.m: line 110: moved extracting errors so they can be unpacked
+EPR_fit.m: lines 114-129: added unpacking of linked values and errors to all coefficients
+EPR_fit.m: line 168: added epr.fit.fits{i}.gof.sse (chi2) to the end of vrstica which goes to results and results_g
+eprFit.m: lines 613 and 616 in butFitFunc_Callback, line 1045 in epr_update: changed if (size(epr.fit.results,2)-1)/2 ~= 
+	size(uicoefs,1) to if (size(epr.fit.results,2)-2)/2 ~= size(uicoefs,1) because now results have sse as well
+eprFit.m: line 1729 in export_fit: changed reading data method to fit the new data type (from fieldnames() to first 
+	collumn)
+
+eprFit.m: lines 2503-2537 in butSimulate_Callback: replaced copying linked values including ratios from the first occurence. 
+	if at least one is fixed all get fixed
+eprFit.m: lines 2906-2940 in butFitSim_Callback: replaced copying linked values including ratios from the first occurence. 
+	if at least one is fixed all get fixed
+
+------------------------------------------------------------------------- corrected lines 6.9.2023
+
+eprFit.m: line 502 in butPlotFunc_Callback: changed labels from simulation to fit to avoid confusion
+eprFit.m: lines 3309-3359: reworked mnuNormAllChi2_Callback function to use fit() like Fit instead of fminsearch like Sim for 
+	quicker results. Still uses linear function, starts at 0*x+0 and scales to chi2 the same way at the end.
+
+
+!will be removed:(eprFit.fig: added 'Global fit to selected' button onto simulate pannel. callback: butGlobFit_Callback
+	eprFit.m: lines 3100-3293: built butGlobFit_Callback function
+	eprFit.m: lines 3295-3299: added MiniGlob function used in butGlobFit_Callback
+	eprFit.fig: added Plot Global fit checkbox
+	eprFit.m: lines 799, 854-863 in eprplot: added plotting of global fit
+	eprFit.m: lines 2598-2599: added chkPlotGlob_Callback function which does nothing)
+
+eprFit.m: lines 2571-2574 in butSimulate_Callback: added reading and storing of Rep, NIter, FunTol and XTol variables so an error
+	doesn't occur in epr_update when you only drew a simulation but never fitted it
+
+eprFit.m: lines 4628,4633,4642 in backupSim: added sim function list history
+eprFit.m: lines 4653,4658,4666 in backupFit: added fit function list history
+eprFit.m: lines 4591 in butSimUndo_Callback and 4610 in butSimReUndo_Callback: added fit function list recovery
+eprFit.m: lines 4698 in butFitUndo_Callback and 4717 in butFitReUndo_Callback: added fit function list recovery
+
+EPR_load.m: lines 176-182: added reading temperature from filename if it was not found in the file
+
+eprFit.fig: added Global fit button and panel. It's similar to fitting panel but has seperate tables for shared and 
+	specific (not shared) parameters, has extra buttons for chosing shared parameters and used files, doesn't have 
+	a 'Run' button
+eprFit.m: lines: 1480, 1490, 1503, 1512, 1523, 1529-1537 in butNRA_Callback, butFitting_Callback, butSimul_Callback, 
+	butES_Callback, butOther_Callback: moved 'ES' and 'Other' callbacks to rest of the kind, added hiding Global fit panel
+	added butGlobFit_Callback
+eprFit.m: lines 73,74: sets popupmenu string to list of functions. same set of functions as fitting except s*x and y0 are renamed
+	to sx and offset because they will be numbered and able to be added multiple times
+
+eprFit.m: line 180 in lbFiles_CreateFcn, 1475 in butReload_Callback: added index number and space before file name in lbFiles
+eprFit.m: lines 1734,1735,1745,1746 in mnuExpAFit_Callback, 4260,4261,4271,4272 in mnuData_Callback: added removing of index 
+	number and space from file name
+EPR_delete.m: lines 45-53: added removing removed files' indices from epr.glob.file_idxs and lowering other's numbers
+eprFit.m: lines 2002-2018 in cmnDelete_Callback: added removing removed files' parameters from specific parameter table and
+	lowering others' numbers
+eprFit.m: lines 1937-1939 in mnuNew_Callback: added clearing function box and parameter tables when new project is opened
+
+eprFit.fig: added Plot Global fit checkbox
+eprFit.m: lines 811, 864-873 in eprplot: added plotting of global fit
+eprFit.m: line 1564,1582 in mnuLoad_Callback: added expanding epr.glob.fits for new files
+fun_lib_glob.m replaced '*', '/', '^' with '.*', './', '.^'
+eprFit.m: lines 4803-5637: added Global fit functionalities: sort_tables, butGlobAdd_Callback, butGlobRem_Callback, 
+	butEditShare_Callback, butSelectedFiles_Callback, getGlobEquation, butPlotGlob_Callback, butFitGlob_Callback, 
+	backupGlob, butGlobUndo_Callback, butGlobRedo_Callback
+
+powdersimu.c: added intensity scaling so that the functions are calculated correctly (same as easyspin)
+eprFit.fig: sim panel: angle step chenged to # of powder points (points on a sphere), added # of MW dir (microwave directions),
+	# of points was ambiguous so changed it to # of H points
+	renamed edtAngleStep to edtNpwdr
+eprFit.m: in butSimulate_Callback and butFitSim_Callback: changed calculating number of points from angle to directly reading 
+	Nstep from edtNpowd. added reading Nmwdir from edtNmwdir
+fun_lib_sim.m: in powder functions: added Nmwdir argument passed to powdersimu
+powdersimu.c: added readnig Nmwdir as Npsi and passing it to the functions
+
+**** Matej dec 2023
+brukerload.m: line 74-77: if temperature not defined set default 295
+
+**** Matej jan 2024
+EPR_load.m: line 101 commented, line 102 removed "/(10^7)" to get reasonable values
+
+**** Matjaž 2024_01_16
+eprFit.m: lines 1794, 1842, 4120, 5492 notation change in export and fit values from fixed point to exponential
+
+**** Tilen 2024_02_21
+EPR_load.m: line 102 commented - we do not need to scale with gain anymore, since the Bruker xepr software is set to do this now.
+EPR_load.m: line 98 and 99 uncommented - this two line were in the code originally, before I started to mess with it. This ignores the gain differences and gives some reasonable intensity values.
+
+**** Korl 2024_07_19
+brukerload.m: Added logic to set temp to 295 if the file name contains "RT" and the Temperature field is not found in the .DSC file.
+              Introduced error handling to ensure npnt is set, throwing an error if it is not found in the .DSC file.
+              Properly initialized all relevant variables (temp, npnt, freq, powr, cent, swep, modb, modf, rcco, stim, nscn, RCAG, ctim) to avoid issues with uninitialized variables.
+              Ensured safe assignments to the exp structure by checking if variables are not empty before assigning them.
+              Resolved dimension mismatch errors by ensuring proper initialization and use of variables.
+              Corrected the amplitude correction logic to ensure nscn is set to 1 if it is empty or zero.
+
+**** Korl 2024_07_30
+eprFit.m: Changed fitting function (line 3429) to a polynomial     fitfunstr = 'a8*x^8 + a7*x^7 + a6*x^6 + a5*x^5 + a4*x^4 + a3*x^3 + a2*x^2 + a1*x + y0';
+                                                                   model = fittype(fitfunstr, 'coefficients', {'a8', 'a7', 'a6', 'a5', 'a4', 'a3', 'a2', 'a1', 'y0'});
+
+**** Korl 2024_08_09
+eprFit.m Partially Fixed/changed: mnuSubBL_Callback (line 2700-ish), now works for multiple datasets, automatically fits a linear function to the endpoins and subtracts it on selected data
+                still has a problem, where the user cant undo this step !!!!!(return original data not working for subBL)!!!!!
+         Fixed: mnuSubFit_Callback (line 2780-ish), now works for all preselected data
+         Fixed: mnuRetData_Callback (line 3900-ish), now works for all selected data at once 
+         Changed: (line 3390-ish) normalize to chi2 now asks for polynomialy degree and fits accordingly
+
+**** Korl 2024_08_12
+        eprLoad.m (line 86-ish) when importing .txt files now prompts the user to use the same choices for H, Y, X columns and automatically applies them (I may have broken some other feature with this one)
+
+**** Korl 2024_08_13
+        eprFit.m (line 846) added residual plot to simulation 
+
+**** Korl 2024_08_15
+        eprFit.m (line 421 and 590-ish) plot and fit buttons now work on old .efi files (added some if statements).  
+        RPR_fit.m (lines 60 and 128-ish) added if statements, so that fit button works for older .efi files. (RUN function does not work yet.)
+ 
+**** Korl 2024_08_21
+        EPR_load.m line 182, now recognizes halfinteger temperatures, written in filename as 'XpYK', where X and Y are integers and p is comma
+        added dpVoigt function, alpha should be bound between 0 and 1, 0 = Gaussian, 1 = Lorentzian
+
+**** Bor 2024_08_28
+        eprFit.m line 876, Commented simulation residual plot

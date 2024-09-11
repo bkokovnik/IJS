@@ -1,0 +1,5 @@
+Zanimivi parametri, ker so HStrain zelo podobni med sabo:
+Sys.g = 1.1429;
+Sys.CF2 = [1.48086e+08 0 1.01681e+08 0 0];          % CF(2,q) with q = +2,+1,0,-1,-2
+Sys.CF4 = [0 0 0 0 9.46368e+06 0 0 0 0];
+Sys.HStrain = [9704.18 9416.19, 9501.77];

@@ -1,0 +1,34 @@
+%==========================================================================
+clear, clf, clc
+
+
+% Simulation options
+Opt.Verbosity = 1;
+
+% Experimental parameters
+Exp.mwFreq = 9.659833;
+Exp.Range = [0 1180];
+Exp.nPoints = 4096;
+
+Sys.S = 1/2;
+Sys.g = 1.1429;
+% Sys.g = [-0.9053, 0.911, 6.6537]  % Najboljši fit do sedaj
+% Sys.g = [-0.9053 0.9110 6.6537];  % Vrednosti iz članka
+% Sys.D = [3000 750];     % MHz
+% Sys.lw = [0 300];             % mT
+% Sys.Nucs = 'Yb';
+% Sys.A = [2 3 5]*360;  % MHz
+Sys.L = 3;
+Sys.soc = -2900*clight*1e-4;
+Exp.Temperature = 30;
+% Sys.CF2 = [2000 -200 1800 -1700 700];
+Sys.CF2 = [9000000 0 19500000 0 0];          % CF(2,q) with q = +2,+1,0,-1,-2
+% Sys.CF2 = [0 0 7740000 0 0];  % Vrednosti iz članka
+Sys.HStrain = [10000 11005 10082];
+% Sys.HStrain = [4270.63 11005 10082.4];  % Najboljši fit do sedaj
+
+[B,spec0] = pepper(Sys,Exp,Opt);
+
+plot(B,spec0);
+axis tight;
+xlabel('magnetic field (mT)');

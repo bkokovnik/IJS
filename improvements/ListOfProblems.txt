@@ -1,0 +1,13 @@
+solved problems/QOL improvements marked with XX, partially solved with X 
+
+*subtract fit not working for multiple datasets XX
+*return original data not working for multiple datasets XX
+*subtract baseline has problems with multiple datasets and is slow X
+*ctrl z undo/return original data needed
+*adding many .txt files time consuming, needs an option "do the same for all selected files" X?(not sure if everything works, code runs on black magic)
+*simulation residual plots XX
+*limit parameters on simulation? 
+*subtract data factor slider/live view? 
+*custom polynomial degree picker in normalize to chi2 XX
+*custom sideplot of poly fit for chi2, degree picker and live auto update sideplot -> accept/cancel
+*vijolcni kvadratki pr simulaciji X
