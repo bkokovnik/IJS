@@ -177,6 +177,7 @@ f_295 = Podatki_295[1:].T[0]
 y_295 = Podatki_295[1:].T[1]
 
 plt.plot(f_295, y_295/np.max(y_295) * skala + 295, label=r"$T = 295$ K")
+plt.fill_between(f_295, 295, y_295/np.max(y_295) * skala + 295, alpha=0.7)
 
 
 
@@ -188,6 +189,7 @@ f_250 = Podatki_250[1:].T[0]
 y_250 = Podatki_250[1:].T[1]
 
 plt.plot(f_250, y_250/np.max(y_250) * skala + 250, label=r"$T = 250$ K")
+plt.fill_between(f_250, 250, y_250/np.max(y_250) * skala + 250, alpha=0.7)
 
 
 
@@ -199,6 +201,7 @@ f_200 = Podatki_200[1:].T[0]
 y_200 = Podatki_200[1:].T[1]
 
 plt.plot(f_200, y_200/np.max(y_200) * skala + 200, label=r"$T = 200$ K")
+plt.fill_between(f_200, 200, y_200/np.max(y_200) * skala + 200, alpha=0.7)
 
 
 
@@ -210,10 +213,59 @@ f_155 = Podatki_155[1:].T[0]
 y_155 = Podatki_155[1:].T[1]
 
 plt.plot(f_155, y_155/np.max(y_155) * skala + 155, label=r"$T = 155$ K")
+plt.fill_between(f_155, 155, y_155/np.max(y_155) * skala + 155, alpha=0.7)
+
+
+
+### T = 80 K
+
+Podatki_80 = np.genfromtxt(r"NMR\NMR obdelava 20230810\data\YbBeGeO\csv\glue_spc\spc-24dB-Yb2Be2GeO7-9Be-3-80K.csv", delimiter=";")
+
+f_80 = Podatki_80[1:].T[0]
+y_80 = Podatki_80[1:].T[1]
+
+plt.plot(f_80, y_80/np.max(y_80) * skala + 80, label=r"$T = 80$ K")
+plt.fill_between(f_80, 80, y_80/np.max(y_80) * skala + 80, alpha=0.7)
+
+
+
+### T = 70 K
+
+Podatki_70 = np.genfromtxt(r"NMR\NMR obdelava 20230810\data\YbBeGeO\csv\glue_spc\spc-23dB-Yb2Be2GeO7-9Be-10-70K.csv", delimiter=";")
+
+f_70 = Podatki_70[1:].T[0]
+y_70 = Podatki_70[1:].T[1]
+
+plt.plot(f_70, y_70/np.max(y_70) * skala + 70, label=r"$T = 70$ K")
+plt.fill_between(f_70, 70, y_70/np.max(y_70) * skala + 70, alpha=0.7)
+
+
+
+### T = 50 K
+
+Podatki_50 = np.genfromtxt(r"NMR\NMR obdelava 20230810\data\YbBeGeO\csv\glue_spc\spc-23dB-Yb2Be2GeO7-9Be-10-50K.csv", delimiter=";")
+
+f_50 = Podatki_50[1:].T[0]
+y_50 = Podatki_50[1:].T[1]
+
+plt.plot(f_50, y_50/np.max(y_50) * skala + 50, label=r"$T = 50$ K")
+plt.fill_between(f_50, 50, y_50/np.max(y_50) * skala + 50, alpha=0.7)
+
+
+
+### T = 35 K
+
+Podatki_35 = np.genfromtxt(r"NMR\NMR obdelava 20230810\data\YbBeGeO\csv\glue_spc\spc-23dB-Yb2Be2GeO7-9Be-10-35K.csv", delimiter=";")
+
+f_35 = Podatki_35[1:].T[0]
+y_35 = Podatki_35[1:].T[1]
+
+plt.plot(f_35, y_35/np.max(y_35) * skala + 35, label=r"$T = 35$ K")
+plt.fill_between(f_35, 35, y_35/np.max(y_35) * skala + 35, alpha=0.7)
 
 
 graf_oblika("Spektri pri različnih temperaturah", r"$f$ [MHz]", r"$T$ [K]", 0)
 
 
-# plt.savefig(r"NMR\Grafi\Spektri_Temp.png", bbox_inches='tight', pad_inches=0.1)
+plt.savefig(r"NMR\Grafi\Spektri_Temp_1.png", bbox_inches='tight', pad_inches=0.1)
 plt.show()

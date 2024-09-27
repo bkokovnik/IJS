@@ -171,25 +171,31 @@ def graf_oblika(Naslov: str, x_os: str, y_os: str, legenda=1):
 
 Podatki1 = np.genfromtxt(r"NMR\NMR obdelava 20230810\data\YbBeGeO\csv\T1\T1-21dB-Yb2Be2GeO7-9Be-1.csv", delimiter=";")
 Podatki2 = np.genfromtxt(r"NMR\NMR obdelava 20230810\data\YbBeGeO\csv\T1\T1-21dB-Yb2Be2GeO7-9Be-2.csv", delimiter=";")
-Podatki3 = np.genfromtxt(r"NMR\NMR obdelava 20230810\data\YbBeGeO\csv\T1\T1-21dB-Yb2Be2GeO7-9Be-2-left.csv", delimiter=";")
+Podatki3 = np.genfromtxt(r"NMR\NMR obdelava 20230810\data\YbBeGeO\csv\T1\T1-21dB-Yb2Be2GeO7-9Be-2-left_wide.csv", delimiter=";")
 Podatki4 = np.genfromtxt(r"NMR\NMR obdelava 20230810\data\YbBeGeO\csv\T1\T1-21dB-Yb2Be2GeO7-9Be-2-right.csv", delimiter=";")
 Podatki5 = np.genfromtxt(r"NMR\NMR obdelava 20230810\data\YbBeGeO\csv\T1\T1-21dB-Yb2Be2GeO7-9Be-3-right.csv", delimiter=";")
 Podatki6 = np.genfromtxt(r"NMR\NMR obdelava 20230810\data\YbBeGeO\csv\T1\T1-24dB-Yb2Be2GeO7-9Be-3-right.csv", delimiter=";")
 Podatki7 = np.genfromtxt(r"NMR\NMR obdelava 20230810\data\YbBeGeO\csv\T1\T1-24dB-Yb2Be2GeO7-9Be-3-left.csv", delimiter=";")
 Podatki8 = np.genfromtxt(r"NMR\NMR obdelava 20230810\data\YbBeGeO\csv\T1\T1-24dB-Yb2Be2GeO7-9Be-3-left-siroko.csv", delimiter=";")
-Podatki9 = np.genfromtxt(r"NMR\NMR obdelava 20230810\data\YbBeGeO\csv\T1\T1-24dB-Yb2Be2GeO7-9Be-3-left.csv", delimiter=";")
+Podatki9 = np.genfromtxt(r"NMR\NMR obdelava 20230810\data\YbBeGeO\csv\T1\T1-24dB-Yb2Be2GeO7-9Be-3-left-b_test1.csv", delimiter=";")
+Podatki10 = np.genfromtxt(r"NMR\NMR obdelava 20230810\data\YbBeGeO\csv\T1\T1-21dB-Yb2Be2GeO7-9Be-2-left.csv", delimiter=";")
+Podatki11 = np.genfromtxt(r"NMR\NMR obdelava 20230810\data\YbBeGeO\csv\T1\T1-24dB-Yb2Be2GeO7-9Be-3-left-b.csv", delimiter=";")
+Podatki12 = np.genfromtxt(r"NMR\NMR obdelava 20230810\data\YbBeGeO\csv\T1\T1-24dB-Yb2Be2GeO7-9Be-3-left-c.csv", delimiter=";")
+Podatki13 = np.genfromtxt(r"NMR\NMR obdelava 20230810\data\YbBeGeO\csv\T1\T1-24dB-Yb2Be2GeO7-9Be-3-left-b.csv", delimiter=";")
 
 T_1 = Podatki1[1:].T[0]
 T1_1 = Podatki1[1:].T[1]
 T1_1_err = Podatki1[1:].T[6]
 r_1 = Podatki1[1:].T[3]
 s_1 = Podatki1[1:].T[5]
+D1_1 = Podatki1[1:].T[17]
 
 T_2 = Podatki2[1:].T[0]
 T1_2 = Podatki2[1:].T[1]
 T1_2_err = Podatki2[1:].T[6]
 r_2 = Podatki2[1:].T[3]
 s_2 = Podatki2[1:].T[5]
+D1_2 = Podatki2[1:].T[17]
 
 T_3 = Podatki3[1:].T[0]
 T1_3 = Podatki3[1:].T[1]
@@ -219,16 +225,38 @@ T_9 = Podatki9[1:].T[0]
 T1_9 = Podatki9[1:].T[1]
 T1_9_err = Podatki9[1:].T[6]
 
-T = np.concatenate((T_1, T_2, T_3, T_4, T_5, T_6))
-T1 = np.concatenate((T1_1, T1_2, T1_3, T1_4, T1_5, T1_6))
-T1_err = np.concatenate((T1_1_err, T1_2_err, T1_3_err, T1_4_err, T1_5_err, T1_6_err))
+T_10 = Podatki10[1:].T[0]
+T1_10 = Podatki10[1:].T[1]
+T1_10_err = Podatki10[1:].T[6]
+
+T_11 = Podatki11[1:].T[0]
+T1_11 = Podatki11[1:].T[1]
+T1_11_err = Podatki11[1:].T[6]
+
+T_12 = Podatki12[1:].T[0]
+T1_12 = Podatki12[1:].T[1]
+T1_12_err = Podatki12[1:].T[6]
+
+T_13 = Podatki13[1:].T[0]
+T1_13 = Podatki13[1:].T[1]
+T1_13_err = Podatki13[1:].T[6]
+
+T = np.concatenate((T_1, T_2, T_4, T_5, T_6))
+T1 = np.concatenate((T1_1, T1_2, T1_4, T1_5, T1_6))
+T1_err = np.concatenate((T1_1_err, T1_2_err, T1_4_err, T1_5_err, T1_6_err))
 r = np.concatenate((r_1, r_2))
 s = np.concatenate((s_1, s_2))
+D1 = np.concatenate((D1_1, D1_2))
 
-plt.errorbar(T, T1, yerr=T1_err, linestyle='None', marker='.', capsize=3)
-# plt.errorbar(T_7, T1_7, yerr=T1_7_err, linestyle='None', marker='.', capsize=3, label="Leva 24 dB")
-plt.errorbar(T_8, T1_8, yerr=T1_8_err, linestyle='None', marker='.', capsize=3, label="Leva 24 dB, široka")
-plt.errorbar(T_9, T1_9, yerr=T1_9_err, linestyle='None', marker='.', capsize=3, label="Leva 24 dB, ozka")
+# plt.errorbar(T, T1, yerr=T1_err, linestyle='None', marker='.', capsize=3)
+plt.errorbar(T_7, T1_7, yerr=T1_7_err, linestyle='None', marker='.', capsize=3, label="Leva 24 dB")
+# plt.errorbar(T_3, T1_3, yerr=T1_3_err, linestyle='None', marker='.', capsize=3, label="Leva 21 dB, široka")
+# plt.errorbar(T_8, T1_8, yerr=T1_8_err, linestyle='None', marker='.', capsize=3, label="Leva 24 dB, široka")
+# plt.errorbar(T_9, T1_9, yerr=T1_9_err, linestyle='None', marker='.', capsize=3, label="Leva 24 dB, ozka")
+# plt.errorbar(T_10, T1_10, yerr=T1_10_err, linestyle='None', marker='.', capsize=3, label="Leva 21 dB, ozka")
+# plt.errorbar(T_11, T1_11, yerr=T1_11_err, linestyle='None', marker='.', capsize=3, label="Leva, aten. rec.")
+plt.errorbar(T_12, T1_12, yerr=T1_12_err, linestyle='None', marker='.', capsize=3, label="Leva, brez aten. rec")
+plt.errorbar(T_13, T1_13, yerr=T1_13_err, linestyle='None', marker='.', capsize=3, label="ZG_three_T1")
 
 graf_oblika(r"$T_1$ v odvisnosti od temperature", r"$T$ [K]", r"$T_1$ [s]", legenda=1)
 
@@ -246,9 +274,24 @@ plt.show()
 
 
 
-# plt.plot(T, s, "o", label=r"$T = 295$ K")
+# fig, ax1 = plt.subplots()
+# ax2 = ax1.twinx()
 
-# graf_oblika(r"$s$ v odvisnosti od temperature", r"$T$ [K]", r"$s$")
+# ax1.plot(T[0:19], s, "o", color="Blue", label=r"$s$")
+# ax2.plot(T[0:19], D1, "o", color="Red", label=r"$D_1$")
+
+# ax1.set_ylabel(r"$s$ [a. u.]")
+# ax2.set_ylabel(r"$D_1$ [us]")
+# ax1.set_xlabel(r"$T$ [K]")
+# ax1.grid()
+
+# # ax2.set_yticks(np.linspace(ax2.get_yticks()[0], ax2.get_yticks()[-1], len(ax1.get_yticks())))
+
+# fig.legend()
+
+# # plt.plot(T[0:19], s, "o", label=r"$T = 295$ K")
+
+# # graf_oblika(r"$s$ v odvisnosti od temperature", r"$T$ [K]", r"$s$")
 
 # # plt.savefig(r"NMR\Grafi\Spektri_Temp.png", bbox_inches='tight', pad_inches=0.1)
 # plt.show()

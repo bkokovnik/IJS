@@ -179,7 +179,13 @@ CF2_0_err_max = np.abs(Podatki[1:].T[3] - CF2_0)
 CF2_0_err = unp.uarray(CF2_0, (CF2_0_err_max + CF2_0_err_min) / (2 * 1.96))
 
 plt.errorbar(Temp, CF2_0, (CF2_0_err_min, CF2_0_err_max), linestyle='None', marker='.', capsize=3)
+
 graf_oblika(r"$B_2^0$ v odvisnosti od temperature", r"$T$ [K]", r"$B_2^0$ [MHz]", legenda=0)
+plt.autoscale(False)
+plt.plot([0, 60], [obtezeno_povprecje(CF2_0_err).nominal_value, obtezeno_povprecje(CF2_0_err).nominal_value], "--", label="Povprečje", color="#5e5e5e", linewidth=1)
+
+plt.legend()
+
 plt.savefig(r"MatLab\easyspin-6.0.5\Sistemi\Fit_Parametri\Grafi\CF2_0.png", bbox_inches='tight', pad_inches=0.1)
 plt.show()
 
@@ -194,7 +200,13 @@ CF4_4_err_max = np.abs(Podatki[1:].T[6] - CF4_4)
 CF4_4_err = unp.uarray(CF4_4, (CF4_4_err_min + CF4_4_err_max) / (2 * 1.96))
 
 plt.errorbar(Temp, CF4_4, (CF4_4_err_min, CF4_4_err_max), linestyle='None', marker='.', capsize=3)
+
 graf_oblika(r"$B_4^4$ v odvisnosti od temperature", r"$T$ [K]", r"$B_4^4$ [MHz]", legenda=0)
+
+plt.autoscale(False)
+plt.plot([0, 60], [obtezeno_povprecje(CF4_4_err).nominal_value, obtezeno_povprecje(CF4_4_err).nominal_value], "--", label="Povprečje", color="#5e5e5e", linewidth=1)
+plt.legend()
+
 plt.savefig(r"MatLab\easyspin-6.0.5\Sistemi\Fit_Parametri\Grafi\CF4_4.png", bbox_inches='tight', pad_inches=0.1)
 plt.show()
 
@@ -209,7 +221,13 @@ CF4_0_err_max = np.abs(Podatki[1:].T[9] - CF4_0)
 CF4_0_err = unp.uarray(CF4_0, (CF4_0_err_min + CF4_0_err_max) / (2 * 1.96))
 
 plt.errorbar(Temp, CF4_0, (CF4_0_err_min, CF4_0_err_max), linestyle='None', marker='.', capsize=3)
-graf_oblika(r"$B_4^0$ v odvisnosti od temperature", r"$T$ [K]", r"$B_4^0$ [MHz]", legenda=0)
+x_limits = plt.xlim()
+y_limits = plt.ylim()
+
+graf_oblika(r"$B_4^0$ v odvisnosti od temperature", r"$T$ [K]", r"$B_4^0$ [MHz]", legenda=1)
+plt.autoscale(False)
+plt.plot([0, 60], [obtezeno_povprecje(CF4_0_err).nominal_value, obtezeno_povprecje(CF4_0_err).nominal_value], "--", label="Povprečje", color="#5e5e5e", linewidth=1)
+plt.legend()
 plt.savefig(r"MatLab\easyspin-6.0.5\Sistemi\Fit_Parametri\Grafi\CF4_0.png", bbox_inches='tight', pad_inches=0.1)
 plt.show()
 
@@ -224,7 +242,13 @@ CF6_4_err_max = np.abs(Podatki[1:].T[12] - CF6_4)
 CF6_4_err = unp.uarray(CF6_4, (CF6_4_err_min + CF6_4_err_max) / (2 * 1.96))
 
 plt.errorbar(Temp, CF6_4, (CF6_4_err_min, CF6_4_err_max), linestyle='None', marker='.', capsize=3)
+
 graf_oblika(r"$B_6^4$ v odvisnosti od temperature", r"$T$ [K]", r"$B_6^4$ [MHz]", legenda=0)
+
+plt.autoscale(False)
+plt.plot([0, 60], [obtezeno_povprecje(CF6_4_err).nominal_value, obtezeno_povprecje(CF6_4_err).nominal_value], "--", label="Povprečje", color="#5e5e5e", linewidth=1)
+plt.legend()
+
 plt.savefig(r"MatLab\easyspin-6.0.5\Sistemi\Fit_Parametri\Grafi\CF6_4.png", bbox_inches='tight', pad_inches=0.1)
 plt.show()
 
@@ -239,7 +263,13 @@ CF6_0_err_max = np.abs(Podatki[1:].T[15] - CF6_0)
 CF6_0_err = unp.uarray(CF6_0, (CF6_0_err_min + CF6_0_err_max) / (2 * 1.96))
 
 plt.errorbar(Temp, CF6_0, (CF6_0_err_min, CF6_0_err_max), linestyle='None', marker='.', capsize=3)
+
 graf_oblika(r"$B_6^0$ v odvisnosti od temperature", r"$T$ [K]", r"$B_6^0$ [MHz]", legenda=0)
+
+plt.autoscale(False)
+plt.plot([0, 60], [obtezeno_povprecje(CF6_0_err).nominal_value, obtezeno_povprecje(CF6_0_err).nominal_value], "--", label="Povprečje", color="#5e5e5e", linewidth=1)
+plt.legend()
+
 plt.savefig(r"MatLab\easyspin-6.0.5\Sistemi\Fit_Parametri\Grafi\CF6_0.png", bbox_inches='tight', pad_inches=0.1)
 plt.show()
 
@@ -254,7 +284,13 @@ HStr1_err_max = np.abs(Podatki[1:].T[18] - HStr1)
 HStr1_err = unp.uarray(HStr1, (HStr1_err_min + HStr1_err_max) / (2 * 1.96))
 
 plt.errorbar(Temp, HStr1, (HStr1_err_min, HStr1_err_max), linestyle='None', marker='.', capsize=3)
+
 graf_oblika(r"$HStrain_1$ v odvisnosti od temperature", r"$T$ [K]", r"$HStrain_1$ [MHz]", legenda=0)
+
+plt.autoscale(False)
+plt.plot([0, 60], [obtezeno_povprecje(HStr1_err).nominal_value, obtezeno_povprecje(HStr1_err).nominal_value], "--", label="Povprečje", color="#5e5e5e", linewidth=1)
+plt.legend()
+
 plt.savefig(r"MatLab\easyspin-6.0.5\Sistemi\Fit_Parametri\Grafi\HStr_1.png", bbox_inches='tight', pad_inches=0.1)
 plt.show()
 
@@ -269,7 +305,13 @@ HStr2_err_max = np.abs(Podatki[1:].T[21] - HStr2)
 HStr2_err = unp.uarray(HStr2, (HStr2_err_min + HStr2_err_max) / (2 * 1.96))
 
 plt.errorbar(Temp, HStr2, (HStr2_err_min, HStr2_err_max), linestyle='None', marker='.', capsize=3)
+
 graf_oblika(r"$HStrain_2$ v odvisnosti od temperature", r"$T$ [K]", r"$HStrain_2$ [MHz]", legenda=0)
+
+plt.autoscale(False)
+plt.plot([0, 60], [np.average(HStr2[2:]), np.average(HStr2[2:])], "--", label="Povprečje", color="#5e5e5e", linewidth=1)
+plt.legend()
+
 plt.savefig(r"MatLab\easyspin-6.0.5\Sistemi\Fit_Parametri\Grafi\HStr_2.png", bbox_inches='tight', pad_inches=0.1)
 plt.show()
 
@@ -284,7 +326,13 @@ HStr3_err_max = np.abs(Podatki[1:].T[24] - HStr3)
 HStr3_err = unp.uarray(HStr3, (HStr3_err_min + HStr3_err_max) / (2 * 1.96))
 
 plt.errorbar(Temp, HStr3, (HStr3_err_min, HStr3_err_max), linestyle='None', marker='.', capsize=3)
+
 graf_oblika(r"$HStrain_3$ v odvisnosti od temperature", r"$T$ [K]", r"$HStrain_3$ [MHz]", legenda=0)
+
+plt.autoscale(False)
+plt.plot([0, 60], [obtezeno_povprecje(HStr3_err).nominal_value, obtezeno_povprecje(HStr3_err).nominal_value], "--", label="Povprečje", color="#5e5e5e", linewidth=1)
+plt.legend()
+
 plt.savefig(r"MatLab\easyspin-6.0.5\Sistemi\Fit_Parametri\Grafi\HStr_3.png", bbox_inches='tight', pad_inches=0.1)
 plt.show()
 
@@ -295,5 +343,5 @@ print("CF4_0: ", obtezeno_povprecje(CF4_0_err))
 print("CF6_4: ", obtezeno_povprecje(CF6_4_err))
 print("CF6_0: ", obtezeno_povprecje(CF6_0_err))
 print("HStr1: ", obtezeno_povprecje(HStr1_err))
-print("HStr2: ", np.average(HStr2))
+print("HStr2: ", np.average(HStr2[2:]))
 print("HStr3: ", obtezeno_povprecje(HStr3_err))
